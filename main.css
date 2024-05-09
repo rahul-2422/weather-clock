@@ -1,0 +1,94 @@
+#display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25%;
+  width: 100%;
+}
+
+#time {
+  font-size: 124px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#seconds {
+  display: none;
+}
+
+#weather-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  /* border: 1px solid black; */
+}
+
+#weather {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  /* border: 1px solid black; */
+}
+
+#icon {
+  width: 100px;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid black; */
+}
+
+#temperature {
+  font-size: 40px;
+  font-family: monospace;
+}
+
+#temp-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#description-display {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  align-items: flex-end;
+}
+
+#description {
+  font-size: 50px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid black; */
+}
+
+#humidity {
+  margin: 0;
+  padding: 0 0 0 0;
+
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#date {
+  font-size: 30px;
+  margin: 0;
+  padding: 0 0 0 0;
+}
+
+#feels_like {
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 100;
+  margin: 0;
+  padding: 1em 0 0 0;
+}

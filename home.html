@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+  <link rel="stylesheet" href="main.css" type="text/css">
+
+<body>
+  <div id="display">
+    <div id="time">
+      <span id="hours"></span>:<span id="minutes"></span><span id="seconds"></span>
+    </div>
+
+    <div id="weather-display">
+      <div id="weather">
+        <img id="icon" alt="">
+        <p id="temperature"></p>
+      </div>
+      <div id="temp-display">
+        <div id="description-display">
+          <p id="description"></p>
+          <p id="humidity"></p>
+        </div>
+        <div id="date-display">
+          <p id="date"></p>
+          <p id="feels_like"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+<script>
+  function updateTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = ":" + seconds;
+  }
+
+  setInterval(updateTime, 1000);
+</script>
+
+<script>
+  function getFormattedDate() {
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    const today = new Date();
+    const dayOfWeek = daysOfWeek[today.getDay()];
+    const month = months[today.getMonth()];
+    const dayOfMonth = today.getDate();
+
+    const formattedDate = `${dayOfWeek}, ${month} ${dayOfMonth}`;
+    return formattedDate;
+  }
+
+  // Update the text content of the <p> tag with the id "date"
+  const dateElement = document.getElementById('date');
+  dateElement.textContent = getFormattedDate();
+</script>
+
+<script>
+  const apiKey = '846bc5fcd0d185c10a4a78835d213f08';
+  const city = 'Hyderabad';
+  const lat = 17.40;
+  const lon = 78.47;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=17.38&lon=78.49&appid=${apiKey}&units=metric`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const temperature = data.main.temp;
+      const feels_like = data.main.feels_like;
+      const humidity = data.main.humidity;
+      const description = data.weather[0].main;
+      const iconUrl = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+
+      const weatherIcon = document.getElementById('icon');
+      const weatherTemperature = document.getElementById('temperature');
+      const weatherFeelsLike = document.getElementById('feels_like')
+      const weatherHumidity = document.getElementById('humidity')
+      const weatherDescription = document.getElementById('description');
+
+      weatherIcon.src = iconUrl;
+      weatherIcon.alt = description;
+      weatherTemperature.textContent = `${temperature} °C`;
+      weatherFeelsLike.textContent = `Feels like ${feels_like} °C`;
+      weatherHumidity.textContent = `Humidity: ${humidity}%`;
+      weatherDescription.textContent = description;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+</script>
+
+</html>
